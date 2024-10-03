@@ -1,0 +1,4 @@
+{"id": "1", "nombre": "Taza gata Sumi", "precio": 456.0, "descripcion": "Taza mediana para cafe con leche con cara de gato", "stock": 12}
+{"id": "2", "nombre": "Taza Sumihiko", "precio": 300.0, "descripcion": "Taza sumihiko con letras japonesas", "stock": 2}
+{"id": "3", "nombre": "Taza chica negra", "precio": 200.0, "descripcion": "Taza de cafe negro", "stock": 4}
+{"id": "4", "nombre": "Taza Rengoku", "precio": 560.0, "descripcion": "Taza sublimada Rengoku San", "stock": 4}
