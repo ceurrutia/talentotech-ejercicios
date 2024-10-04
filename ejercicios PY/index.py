@@ -21,7 +21,7 @@ def fact(num):
             resultado *= i
         return resultado
 
-print(fact(4))
+print(fact(5))
 
 ciudades = ["madrid", "paris", "roma"]
 print(ciudades[-1])
@@ -44,7 +44,9 @@ lista= [2,3,4,5,90,45,60]
 lista.sort()
 
 print(lista[0]) 
-
+print(lista.insert(2, 39))
+print(lista)
+print(lista.count(2))
 
 for num in lista: 
     print(num)
