@@ -84,7 +84,7 @@ def multiplicacion(a,b):
 print("la multiplicacion de los numeros es: ", multiplicacion(a, b) )
 
 a = 20
-b = 0
+b = 2
 
 def division(a,b):
     if b == 0:
@@ -105,9 +105,11 @@ else:
 ##Calculadora de propinas
 
 montoTotal = float(input("Ingrese el monto total consumido: "))
- ##Propina 10%
+propina = float(input("Ingrese el porcentaje de propina que desea dejar: "))
  
 def calcularPropina(montoTotal):
-    return montoTotal * 10 /100 
+    aPagar = montoTotal * (propina /100)
+    return aPagar
 
-print("La propina adecuada para su mesa es: " , calcularPropina(montoTotal))
+print(f"La propina adecuada para su mesa es {calcularPropina(montoTotal)} " )
+print(f"El monto total a pagar es: ", montoTotal + calcularPropina(montoTotal))

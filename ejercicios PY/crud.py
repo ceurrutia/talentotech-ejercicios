@@ -89,6 +89,7 @@ def mostrarProductos():
 
 def buscarProducto():
     id = input("Ingresa el ID del producto a buscar: ")
+    
     for producto in productos:
         if producto.id == id:
             print("ID:", producto.id)
@@ -96,7 +97,10 @@ def buscarProducto():
             print("Precio:", producto.precio)
             print("Descripción:", producto.descripcion)
             print("Stock:", producto.stock)
-            return
+            
+            if producto.stock <= 3:
+                return f"Bajo stock, quedan {producto.stock }"
+            
     print("No se ha encontrado el producto.")
 
 
@@ -126,6 +130,9 @@ def comprarProducto():
                 print("No hay suficiente stock para realizar la compra.")
                 return
         print("No se ha encontrado el producto.")
+ 
+
+
 
 
 ##MENU DE OPCIONES
@@ -163,7 +170,7 @@ while True:
 
         elif opcion == 7:
             comprarProducto()
-
+            
         elif opcion == 8:
             print("Has salido del programa.")
             break

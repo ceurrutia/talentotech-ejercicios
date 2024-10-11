@@ -2,3 +2,6 @@
 {"id": "2", "nombre": "Taza Sumihiko", "precio": 300.0, "descripcion": "Taza sumihiko con letras japonesas", "stock": 2}
 {"id": "3", "nombre": "Taza chica negra", "precio": 200.0, "descripcion": "Taza de cafe negro", "stock": 4}
 {"id": "4", "nombre": "Taza Rengoku", "precio": 560.0, "descripcion": "Taza sublimada Rengoku San", "stock": 4}
+{"id": "1", "nombre": "camisa", "precio": 400.0, "descripcion": "camisa blue", "stock": 5}
+{"id": "campera", "nombre": "600", "precio": 3400.0, "descripcion": "campera bomber", "stock": 4}
+{"id": "campera", "nombre": "camp", "precio": 1.0, "descripcion": "2", "stock": 45}
