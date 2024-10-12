@@ -1,4 +1,22 @@
-import json
+#import json
+import sqlite3
+
+# conexion = sqlite3.connect(productos.db)
+# cursor = conexion.cursor()
+
+##CREAR LA TABLA
+
+# def crearTabla():
+#     cursor.execute('''
+#                  CREATE TABLE IF NOT EXISTS productos( 
+#                    ID INT PRIMARY KEY
+#                    NOMBRE TEXT
+#                    PRECIO REAL
+#                    DESCRIPCION TEXT
+#                    STOCK INTEGER
+#                    ) 
+#                    ''')
+#     conexion.commit()
 
 class Producto:
     def __init__(self, id, nombre, precio, descripcion, stock):
@@ -8,15 +26,15 @@ class Producto:
         self.descripcion = descripcion
         self.stock = stock
     
-    # Convert a diccionario
-    def to_dict(self):
-        return {
-            "id": self.id,
-            "nombre": self.nombre,
-            "precio": self.precio,
-            "descripcion": self.descripcion,
-            "stock": self.stock
-        }
+    # # Convert a diccionario par almacenat en .txt
+    # def to_dict(self):
+    #     return {
+    #         "id": self.id,
+    #         "nombre": self.nombre,
+    #         "precio": self.precio,
+    #         "descripcion": self.descripcion,
+    #         "stock": self.stock
+    #     }
 
 productos = []
 
@@ -35,14 +53,14 @@ def agregarProducto():
     #Instancia de clase
     producto = Producto(id, nombre, precio, descripcion, stock)
     
-    #Convertir a dict
-    producto_dict = producto.to_dict()
+    # #Convertir a dict
+    # producto_dict = producto.to_dict()
     
-    ##Usar el json importado, dump para guardar
+    # ##Usar el json importado, dump para guardar
     
-    with open('productos.txt', 'a') as file:
-        json.dump(producto_dict, file)
-        file.write('\n')
+    # with open('productos.txt', 'a') as file:
+    #     json.dump(producto_dict, file)
+    #     file.write('\n')
 
 print("Producto agregado correctamente.")
 
@@ -98,12 +116,21 @@ def buscarProducto():
             print("Descripción:", producto.descripcion)
             print("Stock:", producto.stock)
             
-            if producto.stock <= 3:
-                return f"Bajo stock, quedan {producto.stock }"
-            
-    print("No se ha encontrado el producto.")
+        print("No se ha encontrado el producto.")
+        
+ ##Lanzar advertencia por bajo stock
 
-
+def verificarBajoStock():
+    limite = 5
+    productosBajoStock = [producto for producto in productos if producto.stock <= limite]
+    
+    if productosBajoStock:
+        print(f"Advertencia! quedan menos de 5 unidades")
+        
+    else:
+        print("Productos con stock suficinete") 
+        
+           
 ## CARGAR nuevos productos cuando no haya
 
 def reabastecerProducto():
@@ -114,6 +141,7 @@ def reabastecerProducto():
             cantidad = int(input("Ingresa la cantidad a reabastecer: "))
             producto.stock += cantidad
             print("Se ha reabastecido el producto correctamente.")
+            verificarBajoStock()
             return
 
 ## simular la compra del producto restando cantidad 
@@ -125,15 +153,14 @@ def comprarProducto():
             if cantidad <= producto.stock:
                 producto.stock -= cantidad
                 print("Se ha comprado el producto correctamente.")
+                verificarBajoStock()
                 return
             else:
                 print("No hay suficiente stock para realizar la compra.")
                 return
         print("No se ha encontrado el producto.")
  
-
-
-
+  
 
 ##MENU DE OPCIONES
 

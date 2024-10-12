@@ -1,5 +1,5 @@
 '''
-Realizar una aplicación en Python que;
+Realizar una aplicación en Python que
 A partir de la cantidad de litros de combustible que
 consume un coche por cada 100 km de recorrido,
 el costo de cada litro de combustible y la longitud
@@ -31,3 +31,30 @@ print(f"los litros usados seran: {listrosUsados}")
 
 dineroGastado = listrosUsados  * costoPorLitro
 print(f"Dinero gastado:  { dineroGastado}")
+
+##Len
+
+texto = "hola"
+nuevo_texto = len(texto)
+print(nuevo_texto)
+
+##Calcular el iva de u producto siendo que este es del 21%
+
+producto = float(input("Ingrese un precio: "))
+iva = 21
+
+prodConIva = producto + (producto * iva /100)
+print(f"El valor de tu producto sin iva es {producto}, con iva del 21% es {prodConIva}")
+    
+##Como funcion
+
+def calcularIva(producto):
+    if producto < 1200:
+        print("No tienes recargos")
+        return producto     
+    else:
+        productoIva = producto + (producto * iva / 100)
+        print(f"El precio total con iva es {productoIva}")
+        return productoIva
+
+calcularIva(producto)
