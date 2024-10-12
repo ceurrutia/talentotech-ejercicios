@@ -1,22 +1,5 @@
-#import json
-import sqlite3
+import json
 
-# conexion = sqlite3.connect(productos.db)
-# cursor = conexion.cursor()
-
-##CREAR LA TABLA
-
-# def crearTabla():
-#     cursor.execute('''
-#                  CREATE TABLE IF NOT EXISTS productos( 
-#                    ID INT PRIMARY KEY
-#                    NOMBRE TEXT
-#                    PRECIO REAL
-#                    DESCRIPCION TEXT
-#                    STOCK INTEGER
-#                    ) 
-#                    ''')
-#     conexion.commit()
 
 class Producto:
     def __init__(self, id, nombre, precio, descripcion, stock):
