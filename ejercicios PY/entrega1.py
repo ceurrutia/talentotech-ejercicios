@@ -70,6 +70,20 @@ def updateProduct():
             print(f"Id product: {product.id}, {product.name} was updated")
 
     print("ID not found")
+    
+##Buscar un producto por ID
+
+def searchProduct():
+    IDToSearch = int(input("Enter the product ID: "))
+    found = False
+    
+    for product in productList:
+        if IDToSearch == product.id:
+            found: True
+            print(f"The Product with ID: {product.id}, name: {product.name}, description: {product.description} is in the list")
+        
+    print("Product not found")
+    
 
 
 ##MENU####
@@ -82,7 +96,8 @@ while True:
         print("3. Update a product by ID")
         print("4. Remove product by ID")
         print("5. Update stock")
-        print("6. Exit")
+        print("6. Search product by ID or name")
+        print("7. Exit")
 
         option = int(input("Select an option: "))
         if option == 1:
@@ -100,8 +115,10 @@ while True:
 
         elif option == 5:
             print("Updating stock...")
-
         elif option == 6:
+            searchProduct()
+
+        elif option == 7:
             print("Exit the program...")
             break
         else:
