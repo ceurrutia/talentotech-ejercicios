@@ -21,7 +21,8 @@ class Product():
 productList = []
 
 
-##Crear
+##Crear un nuevo producto
+
 def createProduct():
     id = int(input("Enter product ID: "))
     name = str(input("Enter product name: "))
@@ -33,7 +34,8 @@ def createProduct():
     print("Product add successfully")
 
 
-##Listar
+##Listar todos los productos
+
 def listProducts():
     if len(productList) == 0:
         print("Nothing in this list")
@@ -42,7 +44,8 @@ def listProducts():
             product.showData()
 
 
-##Remover
+##Remover por ID
+
 def removeProduct():
     idRemover = int(input("Enter product ID to remove: "))
     for product in productList:
@@ -54,18 +57,15 @@ def removeProduct():
             print("Not found")
 
 
-##Actualizar
-
+##Actualizar datos de producto
 
 def updateProduct():
-    IdToUpdate = int(input("Enter the ID of the product to update:"))
+    IdToUpdate = int(input("Enter the ID of the product to update description or price:"))
 
     for product in productList:
         if IdToUpdate == product.id:
-            product.name = str(input("Enter new name: "))
             product.description = str(input("Enter new description: "))
             product.price = float(input("Enter new price: "))
-            product.stock = int(input("Enter new stock: "))
             print("Product update successfully")
             print(f"Id product: {product.id}, {product.name} was updated")
 
@@ -83,8 +83,41 @@ def searchProduct():
             print(f"The Product with ID: {product.id}, name: {product.name}, description: {product.description} is in the list")
         
     print("Product not found")
-    
 
+
+##Comprar producto y que tenga stock
+    
+def byProduct():
+    found = False
+    id = int(input("Enter the product ID: "))
+    userCant = int(input("Enter qantity: "))
+    
+    for product in productList:
+        if id == product.id:
+            found = True
+            if userCant <= product.stock:
+                product.stock -= userCant
+                print("You bougth the product correctly")
+                print("Total value: ", product.price * userCant)
+            else:
+                print("Not enough stock for this product. Try with other!")
+            
+##Recargar stock
+
+def updateStock():
+    id = int(input("Enter product id to update stock: "))
+    cantStock = int(input("Enter cantity to update: "))
+    found = False      
+    
+    for product in productList:
+        if id == product.id:
+            found = True
+            product.stock += cantStock
+            print("Good! Now you have ",product.stock, "unities in product ID: ", product.id)
+            break
+        
+        else:
+            print("ID not found")
 
 ##MENU####
 
@@ -93,11 +126,12 @@ while True:
         print("Select option")
         print("1. Add a new product")
         print("2. List products")
-        print("3. Update a product by ID")
+        print("3. Update a description or price of the product by ID")
         print("4. Remove product by ID")
         print("5. Update stock")
         print("6. Search product by ID or name")
-        print("7. Exit")
+        print("7. Buy a product")
+        print("8. Exit")
 
         option = int(input("Select an option: "))
         if option == 1:
@@ -114,12 +148,16 @@ while True:
             removeProduct()
 
         elif option == 5:
-            print("Updating stock...")
+            updateStock()
+            
         elif option == 6:
             searchProduct()
+            
+        elif option == 7:    
+            byProduct()
 
-        elif option == 7:
-            print("Exit the program...")
+        elif option == 8:
+            print("Exit the program... Bye!")
             break
         else:
             print("Invalid option")
