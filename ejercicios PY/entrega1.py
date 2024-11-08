@@ -17,8 +17,8 @@ class Product():
         Stock: {self.stock}    
         """)
 
-
-productList = []
+##Paso de array a diccionario
+productList = {}
 
 
 ##Crear un nuevo producto
@@ -29,9 +29,13 @@ def createProduct():
     description = str(input("Enter description: "))
     price = float(input("Enter single price: "))
     stock = int(input("Enter stock: "))
-    newProduct = Product(id, name, description, price, stock)
-    productList.append(newProduct)
-    print("Product add successfully")
+    productList[id] = {
+        "name": name,
+        "description": description,
+        "price": price,
+        "stock": stock
+    }
+    print("Product added successfully")
 
 
 ##Listar todos los productos
@@ -40,84 +44,79 @@ def listProducts():
     if len(productList) == 0:
         print("Nothing in this list")
     else:
-        for product in productList:
-            product.showData()
+        for id, details in productList.items():
+            print(f"ID: {id}")
+            for key, value in details.items():
+                print(f"{key.capitalize()}: {value}")
+            print("\n")
 
 
 ##Remover por ID
 
 def removeProduct():
     idRemover = int(input("Enter product ID to remove: "))
-    for product in productList:
-        if idRemover == product.id:
-            productList.remove(product)
-            print("Product remove successfully")
-            print(f"Id product: {product.id}, {product.name} was removed")
-        else:
-            print("Not found")
+    if idRemover in productList:
+        removed_product = productList.pop(idRemover)
+        print("Product removed successfully")
+        print(f"ID: {idRemover}, Name: {removed_product['name']} was removed")
+    else:
+        print("Product not found")
 
 
 ##Actualizar datos de producto
 
 def updateProduct():
-    IdToUpdate = int(input("Enter the ID of the product to update description or price:"))
+    idToUpdate = int(input("Enter the ID of the product to update description or price: "))
 
-    for product in productList:
-        if IdToUpdate == product.id:
-            product.description = str(input("Enter new description: "))
-            product.price = float(input("Enter new price: "))
-            print("Product update successfully")
-            print(f"Id product: {product.id}, {product.name} was updated")
-
-    print("ID not found")
+    if idToUpdate in productList:
+        product = productList[idToUpdate]
+        product['description'] = str(input("Enter new description: "))
+        product['price'] = float(input("Enter new price: "))
+        print("Product updated successfully!")
+        print(f"ID: {idToUpdate}, Name: {product['name']} was updated")
+    else:
+        print("ID not found")
     
 ##Buscar un producto por ID
 
 def searchProduct():
-    IDToSearch = int(input("Enter the product ID: "))
-    found = False
-    
-    for product in productList:
-        if IDToSearch == product.id:
-            found: True
-            print(f"The Product with ID: {product.id}, name: {product.name}, description: {product.description} is in the list")
-        
-    print("Product not found")
+    IdToSearch = int(input("Enter the product ID: "))
+    if IdToSearch in productList:
+        product = productList[IdToSearch]
+        print(f"The Product with ID: {IdToSearch}, Name: {product['name']}, Description: {product['description']} is in the list")
+    else:
+        print("Product not found")
 
 
 ##Comprar producto y que tenga stock
     
 def byProduct():
-    found = False
     id = int(input("Enter the product ID: "))
     userCant = int(input("Enter qantity: "))
     
-    for product in productList:
-        if id == product.id:
-            found = True
-            if userCant <= product.stock:
-                product.stock -= userCant
-                print("You bougth the product correctly")
-                print("Total value: ", product.price * userCant)
-            else:
-                print("Not enough stock for this product. Try with other!")
+    if id in productList:
+        product = productList[id]
+        if userCant <= product['stock']:
+            product['stock'] -= userCant
+            print("You bought the product successfully")
+            print("Total value:", product['price'] * userCant)
+        else:
+            print("Not enough stock for this product. Try another!")
+    else:
+        print("Product not found")
             
 ##Recargar stock
 
 def updateStock():
     id = int(input("Enter product id to update stock: "))
-    cantStock = int(input("Enter cantity to update: "))
-    found = False      
+    cantStock = int(input("Enter cantity to update: "))      
     
-    for product in productList:
-        if id == product.id:
-            found = True
-            product.stock += cantStock
-            print("Good! Now you have ",product.stock, "unities in product ID: ", product.id)
-            break
-        
-        else:
-            print("ID not found")
+    if id in productList:
+        productList[id]['stock'] += cantStock
+        print("Stock updated successfully")
+        print(f"Now you have {productList[id]['stock']} units in product ID: {id}")
+    else:
+        print("ID not found")
 
 ##MENU####
 

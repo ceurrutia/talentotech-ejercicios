@@ -56,20 +56,37 @@ class Anime:
         Precio: {self.precio}
         ''')
 
-
-listaAnime = []
-
+listaAnime = {}
 
 def VerListado():
-     cursor.execute('SELECT * FROM anime ')
-     animes = cursor.fetchall()
-     print("***** Lista de animes en venta en la coleccion ***** \n")
-     if not animes:
-          print(print("No hay registros ingresados"))  
+    cursor.execute('SELECT * FROM anime')
+    animes = cursor.fetchall()
+    print("***** Lista de animes en venta en la coleccion ***** \n")
     
-     else:
-          for anime in animes:
-               print(f"ID: {anime[0]}, Titulo: {anime[1]}, Resumen: {anime[2]}, Director: {anime[3]}, Categoria:  {anime[4]}, Año: {anime[5]}, Episodios: {anime[6]}, Rating: {anime[7]}, Precio: {anime[8]}\n, Stock: {anime[9]}\n")
+    if not animes:
+        print("No hay registros ingresados")
+    else:
+        listaAnime.clear()  
+        for anime in animes:
+           
+            listaAnime[anime[0]] = {
+                "titulo": anime[1],
+                "resumen": anime[2],
+                "director": anime[3],
+                "categoria": anime[4],
+                "año": anime[5],
+                "episodios": anime[6],
+                "rating": anime[7],
+                "precio": anime[8],
+                "stock": anime[9]
+            }
+        
+        
+        for id_anime, detalles in listaAnime.items():
+            print(f"ID: {id_anime}")
+            for key, value in detalles.items():
+                print(f"{key.capitalize()}: {value}")
+            print("\n")
 
 
 def agregarAnime():
