@@ -9,12 +9,12 @@ class Product():
         self.stock = stock
 
     def showData(self):
-        print(f"""
+        print(f"""             
         ID: {self.id}
         Name: {self.name}
         Description: {self.description}
         Price: {self.price}
-        Stock: {self.stock}
+        Stock: {self.stock}    
         """)
 
 

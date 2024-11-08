@@ -1,3 +1,17 @@
+
+##Mayor de 3 numeros
+def esMayor(a,b,c):
+    if a>b:
+        print(f"El mayor es {a}")
+    elif b > c:
+            print(f"El mayor es {b}")
+    elif c > a:
+        print(f"El mayor es {c}")
+    else:
+        print("error")
+
+print(esMayor(4,7,44))
+
 palabras= []
 
 def agregarPalabras():
@@ -38,12 +52,15 @@ while True:
                 
             elif (opcion == 4):
                 print("Has salido del programa. Adios")
-                exit() 
+                break 
             else:
                 print("Opcion no valida. ")
         except:
             print("Solo se permiten numeros enteros")
    
-   
+
+
+
+      
 
     
